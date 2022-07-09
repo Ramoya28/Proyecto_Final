@@ -18,6 +18,102 @@ public class Boletos
     public static int asientos;
     public static String total;
     
+    public static int getSelec_vuelo() {
+        return selec_vuelo;
+    }
+
+    public static void setSelec_vuelo(int selec_vuelo) {
+        Boletos.selec_vuelo = selec_vuelo;
+    }
+
+    public static String getVuelo() {
+        return vuelo;
+    }
+
+    public static void setVuelo(String vuelo) {
+        Boletos.vuelo = vuelo;
+    }
+
+    public static String getFecha() {
+        return fecha;
+    }
+
+    public static void setFecha(String fecha) {
+        Boletos.fecha = fecha;
+    }
+
+    public static String getHora() {
+        return hora;
+    }
+
+    public static void setHora(String hora) {
+        Boletos.hora = hora;
+    }
+
+    public static int getSelec_clase() {
+        return selec_clase;
+    }
+
+    public static void setSelec_clase(int selec_clase) {
+        Boletos.selec_clase = selec_clase;
+    }
+
+    public static String getClase() {
+        return clase;
+    }
+
+    public static void setClase(String clase) {
+        Boletos.clase = clase;
+    }
+
+    public static int getClase_precio() {
+        return clase_precio;
+    }
+
+    public static void setClase_precio(int clase_precio) {
+        Boletos.clase_precio = clase_precio;
+    }
+
+    public static int getSelec_aerolinea() {
+        return selec_aerolinea;
+    }
+
+    public static void setSelec_aerolinea(int selec_aerolinea) {
+        Boletos.selec_aerolinea = selec_aerolinea;
+    }
+
+    public static String getAerolinea() {
+        return aerolinea;
+    }
+
+    public static void setAerolinea(String aerolinea) {
+        Boletos.aerolinea = aerolinea;
+    }
+
+    public static int getBoletos() {
+        return boletos;
+    }
+
+    public static void setBoletos(int boletos) {
+        Boletos.boletos = boletos;
+    }
+
+    public static int getAsientos() {
+        return asientos;
+    }
+
+    public static void setAsientos(int asientos) {
+        Boletos.asientos = asientos;
+    }
+
+    public static String getTotal() {
+        return total;
+    }
+
+    public static void setTotal(String total) {
+        Boletos.total = total;
+    }
+    
     
     public void Datos_Boleto () 
     {
