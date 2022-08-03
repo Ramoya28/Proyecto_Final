@@ -23,59 +23,56 @@ public class Menu
                                            "            4. Impresión de factura" + "\n" +
                                            "            5. Salir"));
         
-        
-        if (opcion == 1)
+        switch (opcion)
         {
+            case 1:
+                
+                Clientes clase2 = new Clientes () ;
+                
+                clase2.Datos_Clientes () ; 
+                
+                break;
+
+            case 2:
             
-            Clientes clase2 = new Clientes () ;
+                Boletos clase3 = new Boletos () ;
+            
+                clase3.registro_Boletos ();
         
-            clase2.Datos_Clientes () ;               
+                clase3.datos_Boletos () ; 
             
-        }
+                break;
         
-        else if (opcion == 2)
-        {
+            case 3:
             
-            Boletos clase3 = new Boletos () ;
-            
-            clase3.registro_Boletos ();
+                Reserva_asientos clase4 = new Reserva_asientos () ;               
         
-            clase3.datos_Boletos () ; 
+                clase4.Reserva_vuelo () ;
             
-        }
+                break;
+                
+            case 4:
+            
+                Facturacion  clase5 = new Facturacion () ;
         
-        else if (opcion == 3)
-        {
+                clase5.Impresion_Factura () ; 
             
-            Reserva_asientos clase4 = new Reserva_asientos () ;
-        
-            clase4.Reserva_vuelo () ;
+                break;
+                
+            case 5:
+                
+                JOptionPane.showMessageDialog(null, "Muchas Gracias por su visita!");
+                
+                continuar = false;
+                
+                break;
             
-        }
-        
-        else if (opcion == 4)
-        {
+            default:
+                
+                JOptionPane.showMessageDialog(null, "La opción seleccionada no es válida");
+                
+                break;
             
-            Facturacion  clase5 = new Facturacion () ;
-        
-            clase5.Impresion_Factura () ; 
-            
-        }
-        
-        else if (opcion == 5)
-        {
-            JOptionPane.showMessageDialog(null, "Muchas Gracias por su visita!");
-            continuar = false; 
-            
-        }
-        
-        int input = JOptionPane.showConfirmDialog(null, "Desea realizar otra reservación ? ");
-            
-        if (input == 1)
-        {
-            JOptionPane.showMessageDialog(null, "Muchas Gracias por su reserva!");
-            continuar = false;
-               
         }
         
         }

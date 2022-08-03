@@ -4,24 +4,47 @@ import javax.swing.JOptionPane;
 
 public class Reserva_asientos {
     
-    public static int asientos [][] = new int [9][10];
-    int fila;
-    int columna;
+    public static String asientos [][] = new String [9][10];
+    public static int fila;
+    public static int columna;
+    public static int filaN; 
+    public static int columnaN;
+    public String cedula2;
+    public static String cadena = "";
+    
+    public void Rellenar_Arreglo ()
+    {
+        
+        for (int f=0; f<asientos.length; f++)
+        {
+            
+            for (int c=0; c<asientos[0].length; c++)
+            {
+                
+                asientos [f][c] = "Disponible";
+                
+            }
+            
+        }
+        
+    }
     
     public void Reserva_vuelo()
-    {
-        boolean seguir = true;
+    {       
+        boolean seguir = true; 
+        
+        Rellenar_Arreglo ();
         
         while (seguir)
         {
-            int opc = Integer.parseInt(JOptionPane.showInputDialog("********* Bienvenido al Sistema de  *********"+ "\n\n" +
-                                                                   "Seleccione una opción: " + "\n" +
+            int opc = Integer.parseInt(JOptionPane.showInputDialog("********* Bienvenido al Sistema de Reserva de Asientos *********"+ "\n\n" +
+                                                                   "Seleccione la opción que desea realizar: " + "\n" +
                                                                    "1. Reservar asientos " + "\n" +
-                                                                   "2. Modificar Reserva " + "\n" +
-                                                                   "3. Eliminar Reserva " + "\n" +
-                                                                   "4. Consultar Reserva " + "\n" +
+                                                                   "2. Modificar Reservas " + "\n" +
+                                                                   "3. Eliminar Reservas " + "\n" +
+                                                                   "4. Consultar Reservas " + "\n" +
                                                                    "5. Consultar Disponibilidad " + "\n" +
-                                                                   "6. Salir del Programa"));
+                                                                   "6. Salir al menú princial"));
             switch (opc)
             {
                 case 1:
@@ -49,12 +72,12 @@ public class Reserva_asientos {
                     break;
                 
                 default:
-                    JOptionPane.showMessageDialog(null, "Seleccione una opción del menú (1-6)");
+                    JOptionPane.showMessageDialog(null, "La opción seleccionada no es válida");
                     break;
             }
         }
     }
-    
+            
     public void Registrar_Asiento()
     {
         // < > \
@@ -63,25 +86,28 @@ public class Reserva_asientos {
     
         while(continuar)
         {
+            cedula2 = JOptionPane.showInputDialog("Indique su número de cédula: ");
+            fila = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de fila que desea reservar (1-9): "));
+            columna = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de asiento que desea reservar (1-10): "));
             
-            fila = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese la fila que desea reservar del 1 al 9)"));
-            columna = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el asiento que desea del 1 al 10)"));
+            -- fila;
+            -- columna; 
             
-            if (asientos [fila - 1][columna - 1] == 0)
+            if (asientos [fila][columna].equals("Disponible"))
             {
                 
-                asientos [fila - 1][columna - 1] = 1;
+                asientos [fila][columna] = cedula2;
                 
                 JOptionPane.showMessageDialog(null, "Reserva Exitosa!" + "\n\n" +
-                                                    "Asiento: # " + columna + "\n" +
-                                                    "Fila: # " + fila);
+                                                    "Fila: # " + (fila+1) + "\n" +
+                                                    "Asiento: # " + (columna+1));
                 
             }
             
             else
             {
                 
-                JOptionPane.showMessageDialog(null, "El asiento seleccionado esta ocupado, por favor selecionar uno disponible.");
+                JOptionPane.showMessageDialog(null, "Campo Ocupado!");
                 
             }
             
@@ -89,7 +115,6 @@ public class Reserva_asientos {
             
             if (input == 1)
             {
-                JOptionPane.showMessageDialog(null, "Muchas Gracias por su reserva!");
                 continuar = false;
                
             }
@@ -101,35 +126,201 @@ public class Reserva_asientos {
     public void Modificar_Reserva()
     {
         
+        boolean continuar = true;
+        boolean seguir = true;
+    
+        while(continuar)
+        {
+            cedula2 = JOptionPane.showInputDialog("Indique el número de cédula de la reserva a modificar: ");
+            fila = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de fila que tiene reservado (1-9): "));
+            columna = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de asiento que tiene reservado (1-10): "));
+            
+            if (asientos [fila][columna] == cedula2)
+            {
+                
+                while (seguir)
+                {
+                    
+                    JOptionPane.showMessageDialog(null, "Indique los campos en los que desea cambiar la reservación: ");
+                    
+                    filaN = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de fila a cambiar (1-9): "));
+                    columnaN = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de asiento a cambiar (1-10): "));
+                    
+                    -- filaN;
+                    -- columnaN;
+                    
+                    if (asientos [filaN][columnaN].equals("Disponible"))
+                    {
+                        
+                        asientos [filaN][columnaN] = cedula2;
+                        asientos [fila][columna] = "Disponbile";
+                        
+                        JOptionPane.showMessageDialog(null, "Reserva modificada exitosamente!");
+                        
+                        seguir = false;
+                        
+                    }
+                    
+                    else
+                    {
+                        
+                        JOptionPane.showMessageDialog(null, "Campo Ocupado!");
+                        
+                        int input2 = JOptionPane.showConfirmDialog(null, "Desea intentar con otro campo ? ");
+            
+                        if (input2 == 1)
+                        {
+                            
+                            seguir = false;
+               
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            else
+            {
+                
+               JOptionPane.showMessageDialog(null, "Los campos o cédula ingresados no pertenecen a una reserva."); 
+                
+            }
+            
+            int input3 = JOptionPane.showConfirmDialog(null, "Desea modificar otra reserva ? ");
+            
+                        if (input3 == 1)
+                        {
+                            
+                            continuar = false;
+               
+                        }
+        }
+        
+        
+        
     }
     
     public void Eliminar_Reserva()
     {
+       
+      boolean continuar = true;
+      
+      while (continuar)
+      { 
+          
+        cedula2 = JOptionPane.showInputDialog("Indique el número de cédula de la reserva a eliminar: ");
+        fila = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de fila que tiene reservado (1-9): "));
+        columna = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique el número de asiento que tiene reservado (1-10): "));  
         
+        -- fila;
+        -- columna;
+        
+        if (asientos [fila][columna] == cedula2)
+        {
+            
+            asientos[fila][columna] = "Disponible";
+            JOptionPane.showMessageDialog(null, "Reserva eliminada exitosamente!");
+            
+        }
+        
+        else
+        {
+            
+            JOptionPane.showMessageDialog(null, "Los campos o cédula ingresados no pertencen a una reserva");
+            
+        }
+        
+        int input4 = JOptionPane.showConfirmDialog(null, "Desea eliminar otra reserva ? ");
+            
+            if (input4 == 1)
+            {
+                            
+                continuar = false;
+               
+            }
+        
+      }
+      
     }
     
     public void Consultar_Reserva()
     {
         
-        for (int f = 0; f < 9; f ++)
-        {
+        boolean continuar = true;
+      
+        while (continuar)
+        { 
+            int contador = 0;
+            cedula2 = JOptionPane.showInputDialog("Indique el número de cédula que desea consultar: ");
             
-            for (int c = 0; c < 10; c ++)
+            for (int f=0; f<asientos.length; f++)
             {
                 
-                JOptionPane.showMessageDialog(null, asientos [f][c] + "\t");
+                for (int c=0; c<asientos[0].length; c++)
+                {
+                    
+                    if (asientos[f][c] == cedula2)
+                    {
+                        
+                        JOptionPane.showMessageDialog(null, "La cédula # " + cedula2 + "tiene el campo reservado: " + "\n\n" +
+                                                            "Fila: " + (f+1) + "\n" +
+                                                            "Campo: " + (c+1) );
+                        
+                    }
+                    
+                    else
+                    {
+                        contador ++;
+                        
+                    }
+                    
+                }
                 
             }
             
-        }
+            if (contador == 90)
+            {
+                
+                JOptionPane.showMessageDialog(null, "La cédula consultada no tiene ninguna reserva");
+                
+            }
+                                   
+            int input5 = JOptionPane.showConfirmDialog(null, "Desea consultar otra reserva ? ");
+            
+                if (input5 == 1)
+                {
+                            
+                    continuar = false;
+               
+                }
         
+        }
+             
     }
     
     public void Consultar_Arreglo()
     {
-        
-    }
+                        
+            
+        for (int f=0; f<asientos.length; f++)
+        {
+                
+            for (int c=0; c<asientos[0].length; c++)
+            {
+                    
+                cadena += " | " + asientos [f][c] + " | ";
+                    
+            }
+                
+            cadena += "\n";
+        }
+                                                        
+        JOptionPane.showMessageDialog(null, cadena);
     
+    }
+
     
 }
 
